@@ -21,13 +21,13 @@ export const initialState = {
 const reducer = (state = initialState, action) => {
   console.log("----------------------");
   switch (action.type) {
-    case "ADD_SMURF_SUCCESS":
+    case ADD_SMURF_SUCCESS:
       console.log("addsmurf success");
       return { ...state, smurfs: [...state.smurfs, action.payload] };
-    case "ADD_SMURF_FAIL":
+    case ADD_SMURF_FAIL:
       console.log("addsmurf fail");
       return { ...state, errors: action.payload };
-    case "ADD_SMURF_ERROR":
+    case ADD_SMURF_ERROR:
       console.log("addsmurf error");
       return { ...state, errors: action.payload };
     case FETCH_SMURFS_START:

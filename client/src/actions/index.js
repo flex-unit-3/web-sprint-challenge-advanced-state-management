@@ -26,7 +26,7 @@ export const fetchSmurfs = () => (dispatch) => {
 export const addSmurf = (newSmurf) => (dispatch) => {
   console.log("addsmurf newSmurf: ", newSmurf);
 
-  newSmurf.name && newSmurf.age && newSmurf.height
+  newSmurf.name && newSmurf.nickname && newSmurf.position
     ? axios
         .post("http://localhost:3333/smurfs", newSmurf)
         .then((res) => {
