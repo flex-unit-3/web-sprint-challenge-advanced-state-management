@@ -8,32 +8,34 @@ export const FETCH_SMURFS_START = "FETCH_SMURFS_START";
 export const FETCH_SMURFS_SUCCESS = "FETCH_SMURFS_SUCCESS";
 export const FETCH_SMURFS_FAIL = "FETCH_SMURFS_FAIL";
 
-export const fetchSmurfs = () => {
-  dispatchEvent({ type: FETCH_SMURFS_START });
+export const fetchSmurfs = () => (dispatch) => {
+  dispatch({ type: FETCH_SMURFS_START });
   axios
     .get("http://localhost:3333/smurfs")
     .then((res) => {
-      dispatchEvent({ type: FETCH_SMURFS_SUCCESS, payload: res.data });
+      dispatch({ type: FETCH_SMURFS_SUCCESS, payload: res.data });
     })
     .catch((err) => {
-      dispatchEvent({ type: FETCH_SMURFS_FAIL, payload: err.message });
+      dispatch({ type: FETCH_SMURFS_FAIL, payload: err.message });
     });
 };
 
-export const addSmurf = (newSmurf) => {
-  newSmurf.name && newSmurf.nickname && newSmurf.position
+export const addSmurf = (newSmurf) => (dispatch) => {
+  console.log("addsmurf newSmurf: ", newSmurf);
+
+  newSmurf.name && newSmurf.age && newSmurf.height
     ? axios
         .post("http://localhost:3333/smurfs", newSmurf)
         .then((res) => {
           console.log("add smurf res: ", res);
-          dispatchEvent({ type: ADD_SMURF_SUCCESS, payload: res.data });
+          dispatch({ type: ADD_SMURF_SUCCESS, payload: res.data });
         })
         .catch((err) => {
           console.log("add smurf err: ", err);
-          dispatchEvent({ type: ADD_SMURF_FAIL, payload: err.message });
+          dispatch({ type: ADD_SMURF_FAIL, payload: err.message });
         })
-    : dispatchEvent({
-        type: ADD_SMURF_ERROR,
+    : dispatch({
+        type: "ADD_SMURF_ERROR",
         payload: "must include a name, nickname, and position",
       });
 };
