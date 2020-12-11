@@ -1,7 +1,45 @@
-import axios from 'axios';
+import axios from "axios";
+
+export const ADD_SMURF_SUCCESS = "ADD_SMURF_SUCCESS";
+export const ADD_SMURF_FAIL = "ADD_SMURF_FAIL";
+export const ADD_SMURF_ERROR = "ADD_SMURF_ERROR";
+
+export const FETCH_SMURFS_START = "FETCH_SMURFS_START";
+export const FETCH_SMURFS_SUCCESS = "FETCH_SMURFS_SUCCESS";
+export const FETCH_SMURFS_FAIL = "FETCH_SMURFS_FAIL";
+
+export const fetchSmurfs = () => {
+  dispatchEvent({ type: FETCH_SMURFS_START });
+  axios
+    .get("http://localhost:3333/smurfs")
+    .then((res) => {
+      dispatchEvent({ type: FETCH_SMURFS_SUCCESS, payload: res.data });
+    })
+    .catch((err) => {
+      dispatchEvent({ type: FETCH_SMURFS_FAIL, payload: err.message });
+    });
+};
+
+export const addSmurf = (newSmurf) => {
+  newSmurf.name && newSmurf.nickname && newSmurf.position
+    ? axios
+        .post("http://localhost:3333/smurfs", newSmurf)
+        .then((res) => {
+          console.log("add smurf res: ", res);
+          dispatchEvent({ type: ADD_SMURF_SUCCESS, payload: res.data });
+        })
+        .catch((err) => {
+          console.log("add smurf err: ", err);
+          dispatchEvent({ type: ADD_SMURF_FAIL, payload: err.message });
+        })
+    : dispatchEvent({
+        type: ADD_SMURF_ERROR,
+        payload: "must include a name, nickname, and position",
+      });
+};
 
 //Task List:
-//1. Add fetch smurfs action: 
+//1. Add fetch smurfs action:
 //              - fetch and return initial list of smurfs
 //              - dispatch actions that indicate if we are waiting for a server response
 //              - dispatch an error text action if an error is returned from the server
