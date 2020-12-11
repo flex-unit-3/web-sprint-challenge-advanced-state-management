@@ -18,9 +18,6 @@ class AddForm extends React.Component {
   //4. DO NOT DELETE THE data-testid FIELD FROM THE ERROR ALERT! This is used for sprint grading.
   //8. Style as necessary.
   render() {
-    // console.log("addForm props : ", this.props);
-    // console.log("addForm newSmurf : ", this.state);
-
     const handleChange = (e) => {
       //   console.log("e event target ", e.target.value);
       return this.setState({ [e.target.name]: e.target.value });
@@ -28,7 +25,6 @@ class AddForm extends React.Component {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log("click!");
       return this.props.addSmurf(this.state);
     };
 

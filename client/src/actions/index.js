@@ -24,17 +24,13 @@ export const fetchSmurfs = () => (dispatch) => {
 };
 
 export const addSmurf = (newSmurf) => (dispatch) => {
-  console.log("addsmurf newSmurf: ", newSmurf);
-
   newSmurf.name && newSmurf.nickname && newSmurf.position
     ? axios
         .post("http://localhost:3333/smurfs", newSmurf)
         .then((res) => {
-          console.log("add smurf res: ", res);
           dispatch({ type: ADD_SMURF_SUCCESS, payload: res.data });
         })
         .catch((err) => {
-          console.log("add smurf err: ", err);
           dispatch({ type: ADD_SMURF_FAIL, payload: err.message });
         })
     : dispatch({
