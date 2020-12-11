@@ -22,10 +22,17 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. What problem does the context API help solve?
+   context API solves state drilling and other issues with component state. it also solves the difficulty and length of setup that comes with redux.
 2. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+   store supplies the state tree and must be accessed -with an action- to change state. all state comes from the store so its the single source of truth. reducers are pure functions that require a type and often utilize a payload the type tells us exactly what is going to change in the state (its like a label that we establish). upon reading and matching type, the reducer responds in the established way, often times creating a new state and returning it. actions are used to carry information to our store and reducer, which will ultimately drive changes of state. They carry a type and generally a payload
 3. What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+component state is useful for something that is only relevant to that particular component, i.e. some sort of initial value or something that will not be reused or reusable. application state is a global state, it holds relevant information to the entire app and is used to be accessed by various components
+
 4. Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+   it allows us to make synchronous calls by dispatching an action. we can do async logic such as making axios calls and dispatching depending on the status/outcome (get/then/catch)
 5. What is your favorite state management system you've learned and this sprint? Please explain why!
+   Hmm probably redux honestly. context is definitely faster and easier, but so far we spent more time on redux so its my preferred. and i know its the industry standard :)
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
@@ -63,9 +70,9 @@ Your finished project must include all of the following requirements:
   - `./actions/index.js` _check_
   - `./index.js` _check_
   - `./App.js` _check_
-  - `./components/AddForm.js`
-  - `./components/Smurf.js`
-  - `./components/SmurfDisplay.js`
+  - `./components/AddForm.js` _check_
+  - `./components/Smurf.js` _check_
+  - `./components/SmurfDisplay.js` _check_
 - [ ] You completed application should do the following:
   - Fetch and display data from the included server code on mounting.
   - Provide the user a form for adding in the Name, Position, Nickname and Description of a new Smurf.
