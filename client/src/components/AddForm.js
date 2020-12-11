@@ -1,14 +1,14 @@
 import React, { setState } from "react";
 import { connect } from "react-redux";
-import { addSmurf } from "../actions";
+import { addSmurf, fetchSmurfs } from "../actions";
 
 class AddForm extends React.Component {
   constructor() {
     super();
     this.state = {
       name: "",
-      age: "",
-      height: "",
+      nickname: "",
+      position: "",
     };
   }
 
@@ -43,15 +43,15 @@ class AddForm extends React.Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="age">Nickname:</label>
+            <label htmlFor="nickname">Nickname:</label>
             <br />
-            <input onChange={handleChange} name="age" id="age" />
+            <input onChange={handleChange} name="nickname" id="nickname" />
           </div>
 
           <div className="form-group">
-            <label htmlFor="height">Position:</label>
+            <label htmlFor="position">Position:</label>
             <br />
-            <input onChange={handleChange} name="height" id="height" />
+            <input onChange={handleChange} name="position" id="position" />
           </div>
 
           <div
@@ -76,7 +76,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addSmurf })(AddForm);
+export default connect(mapStateToProps, { addSmurf, fetchSmurfs })(AddForm);
 
 //Task List:
 //1. Add in all necessary import components and library methods.

@@ -12,13 +12,6 @@ import { connect } from "react-redux";
 import axios from "axios";
 
 class App extends Component {
-  componentDidMount() {
-    return this.props.fetchSmurfs();
-  }
-
-  componentDidUpdate() {
-    console.log("props update: ", this.props);
-  }
   render() {
     return (
       <div className="App">
